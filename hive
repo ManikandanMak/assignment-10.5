@@ -1,0 +1,23 @@
+create table if not exists travle(City_pair string,
+    > From_location string,
+    > To_location string,
+    > Product_type int,
+    > Adults_traveling int,
+    > Seniors_traveling int,
+    > Children_traveling int,
+    > Youth_traveling int,
+    > Infant_traveling int,
+    > Date_of_travel string,
+    > Time_of_travel string,
+    > Date_of_return string,
+    > Time_of_return string,
+    > Price_of_booking float,
+    > Hotel_name string)
+    > row format delimited
+    > fields terminated by '\t';
+
+load data local inpath '/home/acadgild/TravelData.txt' into table travle;
+
+select To_location,COUNT(To_location) as c from travle group by To_location order by c desc limit 20; 
+
+select From_location,COUNT(From_location) as c from travle group by From_location order by c desc limit 20;
